@@ -9,6 +9,8 @@ const navigation = [
   { name: 'Pricing', href: '#pricing' },
   { name: 'Testimonials', href: '#testimonials' },
   { name: 'FAQ', href: '#faq' },
+  { name: 'Sign Up', href: '/signup' }, // Added Sign Up link
+  { name: 'Login', href: '/login' },     // Added Login link
 ];
 
 const Navbar = () => {
