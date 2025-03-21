@@ -1,4 +1,4 @@
-  export default async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -10,17 +10,22 @@
   }
 
   try {
+    const requestBody = {
+      email: email,
+      groups: ['waiting-list'] // Ensure this group exists in your MailerLite account
+    };
+    console.log('Request body:', JSON.stringify(requestBody));
+    
     const response = await fetch('https://api.mailerlite.com/api/v2/subscribers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'X-MailerLite-ApiKey': process.env.NEXT_PUBLIC_MAILERLITE_API_KEY
       },
-      body: JSON.stringify({
-        email: email,
-        groups: ['waiting-list']
-      })
+      body: JSON.stringify(requestBody) // Use requestBody here
     });
+
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.message || 'Failed to subscribe');

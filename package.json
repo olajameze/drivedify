@@ -9,17 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.19",
-    "@heroicons/react": "^2.2.0",
-    "framer-motion": "^11.18.2",
-    "next": "^14.2.24",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@heroicons/react": "^1.0.6",
+    "@tailwindcss/forms": "^0.5.3",
+    "@types/date-fns": "^2.5.3",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.37",
+    "@types/react-dom": "18.0.11",
+    "autoprefixer": "10.4.14",
+    "date-fns": "^2.30.0",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "framer-motion": "^12.5.0",
+    "next": "^15.2.3",
+    "postcss": "^8.5.3",
+    "react": "18.2.0",
+    "react-big-calendar": "^1.6.9",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.3.1",
+    "typescript": "5.0.4"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.17"
+    "@types/react-big-calendar": "^1.6.4"
   },
   "eslintConfig": {
     "extends": [

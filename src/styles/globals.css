@@ -98,4 +98,86 @@ body.menu-open {
 
 .container-padding {
   @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Custom styles for calendar */
+.rbc-calendar {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  border-radius: 0.375rem;
+}
+
+.rbc-header {
+  padding: 10px 3px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.rbc-event {
+  border-radius: 0.25rem;
+  padding: 2px 5px;
+  overflow: hidden;
+  background-color: transparent !important;
+  color: #000 !important;
+  font-size: 0.75rem;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.rbc-today {
+  background-color: #ebf5ff;
+}
+
+.rbc-off-range-bg {
+  background: #f9fafb;
+}
+
+.rbc-toolbar button {
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.rbc-toolbar button.rbc-active {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.rbc-toolbar button.rbc-active:hover {
+  background-color: #2563eb;
+  color: white;
+}
+
+.rbc-time-header-content > .rbc-row.rbc-row-resource {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.rbc-time-view {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+}
+
+.rbc-timeslot-group {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rbc-time-content {
+  border-top: 1px solid #e5e7eb;
+}
+
+.rbc-day-slot .rbc-time-slot {
+  border-top: 1px solid #f3f4f6;
+}
+
+.rbc-current-time-indicator {
+  background-color: #ef4444;
+  height: 2px;
 } 

@@ -1,0 +1,98 @@
+You are tasked with developing **DrivEdify**, a premium web app for driving instructors. This app is inspired by **TotalDrive** (https://totaldrive.co.uk/) but aims to provide enhanced and unique features. The app must strictly follow modern development practices and be fully functional before moving to the next feature.
+
+---
+
+## **Strict Development Requirements**  
+1. **Focus on One Feature at a Time** – Each feature must be fully completed, tested, and error-free before moving to the next.  
+2. **Follow Modern Development Practices** – Use **React.js with Next.js**, **TypeScript**, **Tailwind CSS**, and other best tools for efficiency.  
+3. **Ensure Full Page Linking** – Every feature should be correctly linked, allowing smooth navigation.  
+4. **Fix All Errors Before Proceeding** – The app should be bug-free at every stage.  
+5. **Incorporate Additional Inspirations** – Use **TotalDrive**, **RoboSoul**, and other industry insights to improve features.  
+
+---
+
+## **Core Features to Develop (Step by Step)**  
+
+### ✅ **1. Instructor Dashboard**  
+- Displays upcoming lessons, student progress, earnings, and notifications.  
+- Customizable widgets for quick access to important data.  
+
+### ✅ **2. Student Management System**  
+- Add, edit, and track student profiles with progress reports.  
+- Allow instructors to **rate student readiness** for driving tests.  
+- Option to send feedback and reports directly to students.  
+
+### ✅ **3. Lesson Scheduling & Calendar Integration**  
+- **Drag-and-drop calendar** for scheduling lessons.  
+- **Google Calendar integration** for lesson syncing.  
+- Automated reminders sent to students before lessons.  
+
+### ✅ **4. Payment & Earnings Tracker**  
+- Track earnings and completed lessons.  
+- Secure payment tracking and invoicing.  
+- Option to integrate **Stripe or PayPal** for payments.  
+
+### ✅ **5. Lesson Notes & Student Progress Reports**  
+- Instructors can write lesson notes and feedback for each student.  
+- Students can **view progress reports** and track improvements.  
+- Add a **video upload feature** for lesson recap videos.  
+
+### ✅ **6. Road Hazards & Driving Theory Quiz**  
+- Interactive quizzes for hazard perception and driving theory.  
+- Gamified progress tracking for students.  
+- Feature that **TotalDrive doesn’t have**, giving DrivEdify a competitive edge.  
+
+### ✅ **7. Instructor Community & Support System**  
+- Private forum or messaging system for instructors to **share tips and best practices**.  
+- AI-powered chatbot to assist with common questions and lesson planning.  
+
+### ✅ **8. Student Booking System**  
+- Students can request lesson slots based on instructor availability.  
+- Instant notifications for instructors when a student books a lesson.  
+
+---
+
+## **NEW Interactive Driving Lessons & Simulations**  
+
+### ✅ **9. Interactive Driving Lessons**  
+Create interactive driving lesson modules for the following topics:  
+- **Controls**  
+- **Position**  
+- **Emergency Stop**  
+- **Pedestrian Crossings**  
+- **Manoeuvres**  
+- **Give Way**  
+- **Traffic Lights**  
+- **Roundabouts**  
+- **Dual Carriageways**  
+
+Each lesson should include:  
+- Visual guides and **animated step-by-step instructions**.  
+- Interactive **quizzes and challenges** after each lesson.  
+
+---
+
+### ✅ **10. 2D Road Simulation with Movable Car Objects**  
+- **2D road system** where instructors can **move car objects** to explain different scenarios.  
+- Ability to demonstrate **junctions, roundabouts, and different road situations**.  
+- Smooth animations that clearly **illustrate road rules and best practices**.  
+
+---
+
+## **Technical Implementation Guidelines**  
+- Use **TypeScript** for better maintainability.  
+- Implement **React Context API or Redux Toolkit** for state management.  
+- Use **React Three Fiber** or **Konva.js** for interactive road simulation.  
+- Optimize for **performance, responsiveness, and accessibility** across all devices.  
+- Ensure smooth **drag-and-drop functionality** for moving car objects in simulations.  
+- Deploy on **Netlify** with continuous integration.  
+
+---
+
+## **Final Instructions for Blackbox.AI**  
+- Begin with the **Instructor Dashboard**, completing it fully before moving to the next feature.  
+- Ensure every feature is **bug-free, fully linked, and user-friendly**.  
+- Develop the **interactive lessons and road simulations** as a major selling point for the app.  
+- Once all features are built, conduct **final testing** to confirm full functionality.  
+
+Strictly follow these instructions to ensure DrivEdify meets high industry standards and stands out in the market.  

@@ -4,6 +4,8 @@ import { CheckCircleIcon } from '@heroicons/react/24/outline';
 
 const WaitingListSignup = () => {
   const [email, setEmail] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -40,8 +42,9 @@ const WaitingListSignup = () => {
         throw new Error(data.error || 'Failed to subscribe');
       }
   
-      setSubmitted(true);
+      setSuccessMessage("Thank you! You've been added to the waiting list.");
       setEmail('');
+
     } catch (err) {
       console.error('Subscription error:', err);
       setError(err.message || 'Something went wrong. Please try again.');
@@ -63,15 +66,17 @@ const WaitingListSignup = () => {
         </div>
 
         <div className="mt-8 max-w-md mx-auto">
-          {submitted ? (
+          {successMessage ? (
+
             <div className="rounded-md bg-green-50 p-4">
               <div className="flex">
                 <div className="flex-shrink-0">
                   <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
                 </div>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-green-800">
-                    Thank you! You've been added to the waiting list.
+              <p className="text-sm font-medium text-green-800">
+                {successMessage}
+
                   </p>
                 </div>
               </div>
