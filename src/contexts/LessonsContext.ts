@@ -1,12 +1,37 @@
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+
 export interface Lesson {
   id: string;
   title: string;
-  date: string; // Ensure this is included
-  time: string; // Ensure this is included
+  date: string;
+  time: string;
   duration: number;
   studentId: string;
-  student: string; // Ensure this is included if you have a separate student name
-  status: string; // Add status if it's part of your logic
-  location: string; // Add location if it's part of your logic
-  type: string; // Add type if it's part of your logic
-} 
+  student: string;
+}
+
+interface LessonsContextValue {
+  lessons: Lesson[];
+  setLessons: React.Dispatch<React.SetStateAction<Lesson[]>>;
+}
+
+const LessonsContext = createContext<LessonsContextValue>({
+  lessons: [],
+  setLessons: () => {}
+});
+
+export const useLessons = () => useContext(LessonsContext);
+
+interface LessonsProviderProps {
+  children: ReactNode;
+}
+
+export const LessonsProvider: React.FC<LessonsProviderProps> = ({ children }) => {
+  const [lessons, setLessons] = useState<Lesson[]>([]);
+  
+  return (
+    <LessonsContext.Provider value={{ lessons, setLessons }}>
+      {children}
+    </LessonsContext.Provider>
+  );
+};
