@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+// In src/pages/index.tsx
 import HeroSection from '../components/HeroSection';
 import FeaturesGrid from '../components/FeaturesGrid';
 import PricingTable from '../components/PricingTable';
@@ -7,7 +6,23 @@ import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import WaitingListSignup from '../components/WaitingListSignup';
 import Footer from '../components/Footer';
+import { motion } from 'framer-motion';
+import { useContext } from 'react';
 import SEO from '../components/SEO';
+
+const HomePage = () => {
+  return (
+    <>
+      <HeroSection />
+      <FeaturesGrid />
+      <PricingTable />
+      <Testimonials />
+      <FAQ />
+      <WaitingListSignup />
+      <Footer />
+    </>
+  );
+};
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },

@@ -27,8 +27,8 @@ const TestMailerLite = () => {
   
       setStatus('Success! Check MailerLite dashboard.');
     } catch (err) {
-      console.error('Connection test error:', err);
-      setStatus(`Error: ${err.message}`);
+      console.error('Connection test error:', (err as Error).message);
+      setStatus(`Error: ${(err as Error).message}`);
     }
   };
   
