@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export interface Lesson {
-  time: any;
-  date: any;
   id: string;
   title: string;
   studentId: string;
   studentName: string;
+  date: string; // This is a string in ISO format
+  time: string; // This is a string in HH:MM format
   start: Date;
   end: Date;
   duration: number;
@@ -17,19 +17,21 @@ export interface Lesson {
   color?: string;
 }
 
+// Create a type for the lesson data when adding a new lesson
+export type NewLessonInput = Omit<Lesson, 'id' | 'color'>;
+
 interface LessonsContextType {
   lessons: Lesson[];
   isLoading: boolean;
   error: Error | null;
   fetchLessons: () => Promise<void>;
-  addLesson: (lesson: Omit<Lesson, 'id'>) => Promise<Lesson>;
+  addLesson: (lesson: NewLessonInput) => Promise<Lesson>;
   updateLesson: (id: string, lessonData: Partial<Lesson>) => Promise<Lesson>;
   deleteLesson: (id: string) => Promise<void>;
   getStudentLessons: (studentId: string) => Lesson[];
 }
 
-export type LessonsContext = ReturnType<typeof createContext<LessonsContextType | undefined>>;
-
+// Create the context
 const LessonsContext = createContext<LessonsContextType | undefined>(undefined);
 
 export const useLessons = () => {
@@ -76,7 +78,23 @@ export const LessonsProvider: React.FC<LessonsProviderProps> = ({ children }) =>
       setIsLoading(true);
       const response = await fetch('/api/lessons');
       const data = await response.json();
-      setLessons(data);
+      
+      // Process the data to ensure dates are properly formatted
+      const processedData = data.map((lesson: any) => {
+        const startDate = new Date(lesson.start);
+        const endDate = new Date(lesson.end);
+        
+        return {
+          ...lesson,
+          start: startDate,
+          end: endDate,
+          // Add date and time properties if they don't exist
+          date: lesson.date || startDate.toISOString().split('T')[0],
+          time: lesson.time || startDate.toTimeString().slice(0, 5)
+        };
+      });
+      
+      setLessons(processedData);
     } catch (err) {
       setError(err as Error);
     } finally {
@@ -84,25 +102,56 @@ export const LessonsProvider: React.FC<LessonsProviderProps> = ({ children }) =>
     }
   };
 
-  const addLesson = async (lesson: Omit<Lesson, 'id'>): Promise<Lesson> => {
-    const newLesson = { 
+  const addLesson = async (lesson: NewLessonInput): Promise<Lesson> => {
+    // Ensure start and end are Date objects
+    const startDate = lesson.start instanceof Date ? lesson.start : new Date(lesson.start);
+    const endDate = lesson.end instanceof Date ? lesson.end : new Date(lesson.end);
+    
+    const newLesson: Lesson = { 
       ...lesson,
       id: Math.random().toString(36).substring(2, 9),
+      start: startDate,
+      end: endDate,
       color: getLessonColor(lesson.type)
     };
+    
     setLessons(prev => [...prev, newLesson]);
     return newLesson;
   };
 
   const updateLesson = async (id: string, lessonData: Partial<Lesson>): Promise<Lesson> => {
+    // Process date objects if they exist in the update
+    const processedData = { ...lessonData };
+    
+    if (lessonData.start && !(lessonData.start instanceof Date)) {
+      processedData.start = new Date(lessonData.start);
+    }
+    
+    if (lessonData.end && !(lessonData.end instanceof Date)) {
+      processedData.end = new Date(lessonData.end);
+    }
+    
+    // If start date is updated, update date and time properties too
+    if (processedData.start) {
+      processedData.date = processedData.start.toISOString().split('T')[0];
+      processedData.time = processedData.start.toTimeString().slice(0, 5);
+    }
+    
     setLessons(prev => prev.map(l => {
       if (l.id === id) {
         const updatedColor = lessonData.type ? getLessonColor(lessonData.type) : l.color;
-        return { ...l, ...lessonData, color: updatedColor };
+        return { ...l, ...processedData, color: updatedColor };
       }
       return l;
     }));
-    return { id, ...lessonData } as Lesson;
+    
+    // Find the updated lesson to return
+    const updatedLesson = lessons.find(l => l.id === id);
+    if (!updatedLesson) {
+      throw new Error(`Lesson with id ${id} not found`);
+    }
+    
+    return { ...updatedLesson, ...processedData } as Lesson;
   };
 
   const deleteLesson = async (id: string): Promise<void> => {

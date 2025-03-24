@@ -36,7 +36,7 @@ const validateLesson = (lesson: any): lesson is Lesson => {
     lesson.date instanceof Date &&
     typeof lesson.duration === 'number' &&
     Array.isArray(lesson.objectives) &&
-    lesson.objectives.every(obj => typeof obj === 'string') &&
+    lesson.objectives.every((objective: any) => typeof objective === 'string') &&
     typeof lesson.studentProgress === 'string' &&
     ['scheduled', 'completed', 'cancelled'].includes(lesson.status)
   );
