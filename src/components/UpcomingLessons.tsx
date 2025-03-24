@@ -1,6 +1,12 @@
 import React from 'react';
 
-const UpcomingLessons = ({ lessons }) => {
+interface Lesson {
+  id: number;
+  date: string;
+  time: string;
+  student: string;
+}
+const UpcomingLessons = ({ lessons }: { lessons: Lesson[] }) => {
   return (
     <div className="bg-white p-4 rounded shadow">
       <h2 className="text-xl font-bold mb-2">Upcoming Lessons</h2>

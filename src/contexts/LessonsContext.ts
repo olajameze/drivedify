@@ -9,6 +9,9 @@ import React, {
 } from 'react';
 
 export interface Lesson {
+  endTime: any;
+  startTime: ReactNode;
+  studentName: ReactNode;
   id: string;
   title: string;
   date: Date;
