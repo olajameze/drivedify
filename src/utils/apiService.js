@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://api.youractualurl.com'; // Updated to actual API endpoint
+const API_BASE_URL = 'http://localhost:3002'; // Updated to mock API endpoint
+
 
 export const fetchUpcomingLessons = async () => {
   const response = await axios.get(`${API_BASE_URL}/upcoming-lessons`);

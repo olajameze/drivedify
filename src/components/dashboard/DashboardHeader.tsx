@@ -9,11 +9,13 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () => {
         <h1 className="text-3xl font-bold text-gray-900">Welcome back, John</h1>
         <div className="text-right">
           <p className="text-sm text-gray-500">Today's Date</p>
-          <p className="text-lg font-semibold">{new Date().toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <p className="text-lg font-semibold">{`${new Date().toLocaleDateString('en-GB', { weekday: 'long' })}, ${new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}`}</p>
+
+
         </div>
       </div>
     </div>
   );
 };
 
-export default DashboardHeader; 
+export default DashboardHeader;

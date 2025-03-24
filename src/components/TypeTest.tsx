@@ -2,10 +2,13 @@ import React from 'react';
 import { useLessons } from '../contexts/LessonsContext';
 
 export const TypeTest: React.FC = () => {
-  const { lessons, loading, error, addLesson, updateLesson, deleteLesson } = useLessons();
+  const { lessons, loading = false, error, addLesson, updateLesson, deleteLesson } = useLessons();
 
   // Test type safety
   const testLesson: Omit<typeof lessons[0], 'id'> = {
+  startTime: '10:00 AM', // Example start time
+  endTime: '11:00 AM', // Example end time
+  studentName: 'John Doe', // Example student name
     title: 'Test Lesson',
     date: new Date(),
     duration: 60,
