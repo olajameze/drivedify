@@ -7,28 +7,7 @@ import FAQ from '../components/FAQ';
 import WaitingListSignup from '../components/WaitingListSignup';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
-import { useContext } from 'react';
 import SEO from '../components/SEO';
-
-const HomePage = () => {
-  return (
-    <>
-      <HeroSection />
-      <FeaturesGrid />
-      <PricingTable />
-      <Testimonials />
-      <FAQ />
-      <WaitingListSignup />
-      <Footer />
-    </>
-  );
-};
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
 
 const Home: React.FC = () => {
   return (
@@ -45,16 +24,32 @@ const Home: React.FC = () => {
         >
           <HeroSection />
           <FeaturesGrid />
-          <motion.div {...fadeInUp}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6 }}
+          >
             <PricingTable />
           </motion.div>
-          <motion.div {...fadeInUp}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6 }}
+          >
             <Testimonials />
           </motion.div>
-          <motion.div {...fadeInUp}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6 }}
+          >
             <FAQ />
           </motion.div>
-          <motion.div {...fadeInUp}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6 }}
+          >
             <WaitingListSignup />
           </motion.div>
           <Footer />
