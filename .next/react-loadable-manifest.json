@@ -10,11 +10,5 @@
     "files": [
       "static/chunks/_pages-dir-browser_node_modules_next_dist_pages__error_js.js"
     ]
-  },
-  "pages\\calendar.tsx -> ../components/calendar/LessonsCalendar": {
-    "id": "pages\\calendar.tsx -> ../components/calendar/LessonsCalendar",
-    "files": [
-      "static/chunks/_pages-dir-browser_src_components_calendar_LessonsCalendar_tsx.js"
-    ]
   }
 }

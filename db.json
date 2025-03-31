@@ -1,14 +1,19 @@
-[
-  {
-    "id": 1,
-    "name": "John Doe",
-    "progress": "75%",
-    "readiness": "Ready for test"
-  },
-  {
-    "id": 2,
-    "name": "Jane Smith",
-    "progress": "50%",
-    "readiness": "Needs more practice"
-  }
-]
+{
+  "student-progress": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "progress": "75%",
+      "readiness": "Ready for test"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "progress": "50%",
+      "readiness": "Needs more practice"
+    }
+  ],
+  "upcoming-lessons": [],
+  "earnings": [],
+  "notifications": []
+}

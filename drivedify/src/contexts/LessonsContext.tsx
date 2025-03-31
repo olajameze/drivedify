@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-interface Lesson {
+export interface Lesson {
   id: string;
   title: string;
   date: string; // ISO format

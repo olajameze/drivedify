@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChartBarIcon } from '@heroicons/react/outline';
+import { fetchStudentProgress } from '../../utils/apiService';
 
 interface Student {
   id: string;
@@ -10,13 +11,31 @@ interface Student {
 }
 
 const StudentProgress: React.FC = () => {
-  // Mock data - would come from API in real app
-  const students: Student[] = [
-    { id: '1', name: 'Sarah Johnson', progress: 85, lastLesson: '2023-05-15', nextTest: '2023-06-10' },
-    { id: '2', name: 'Michael Brown', progress: 62, lastLesson: '2023-05-16', nextTest: '2023-06-22' },
-    { id: '3', name: 'Emily Wilson', progress: 91, lastLesson: '2023-05-14', nextTest: '2023-05-28' },
-    { id: '4', name: 'David Lee', progress: 45, lastLesson: '2023-05-13', nextTest: 'Not scheduled' }
-  ];
+  const [students, setStudents] = useState<Student[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    const getStudentProgress = async () => {
+      try {
+        const data = await fetchStudentProgress();
+        setStudents(data);
+      } catch (err) {
+        setError('Failed to fetch student progress data.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    getStudentProgress();
+  }, []);
+
+  if (loading) {
+    return <p>Loading student progress data...</p>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
@@ -60,4 +79,4 @@ const StudentProgress: React.FC = () => {
   );
 };
 
-export default StudentProgress; 
+export default StudentProgress;
