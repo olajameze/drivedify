@@ -180,4 +180,43 @@ body.menu-open {
 .rbc-current-time-indicator {
   background-color: #ef4444;
   height: 2px;
-} 
+}
+
+/* Progress bars */
+.progress-bar {
+  @apply h-2 bg-gray-200 rounded-full;
+}
+
+.progress-bar-fill {
+  @apply h-2 rounded-full transition-all duration-300;
+}
+
+.progress-bar-fill-red {
+  @apply bg-red-500;
+}
+
+.progress-bar-fill-yellow {
+  @apply bg-yellow-500;
+}
+
+.progress-bar-fill-green {
+  @apply bg-green-500;
+}
+
+/* Progress containers */
+.progress-container {
+  @apply bg-gray-50 p-4 rounded-lg;
+}
+
+.progress-header {
+  @apply flex justify-between items-center mb-2;
+}
+
+.progress-label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+/* Width utilities */
+.w-progress {
+  @apply transition-[width] duration-300 ease-in-out;
+}

@@ -3,12 +3,23 @@ export interface DashboardStats {
   upcomingLessons: number;
   monthlyEarnings: number;
   testPassRate: number;
+  completedLessons: number;
+}
+
+export interface Widget {
+  id: string;
+  title: string;
+  component: React.FC;
+  isEnabled: boolean;
+  position: number;
 }
 
 export interface DashboardState {
   stats: DashboardStats;
-  activeWidgets: string[];
-  setActiveWidgets: (widgets: string[]) => void;
+  sidebarOpen: boolean;
+  isLoading: boolean;
+  error: Error | null;
+  toggleSidebar: () => void;
 }
 
 export type LessonStatus = 'scheduled' | 'completed' | 'canceled';

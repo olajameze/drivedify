@@ -334,19 +334,19 @@ const StudentDetail: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="flex justify-between items-center mb-2">
-                        <h3 className="text-sm font-medium text-gray-700">Road Positioning</h3>
-                        <span className="text-sm font-medium text-gray-700">{student.testReadiness.roadPositioning}%</span>
+                    <div className="progress-container">
+                      <div className="progress-header">
+                        <h3 className="progress-label">Road Positioning</h3>
+                        <span className="progress-label">{student.testReadiness.roadPositioning}%</span>
                       </div>
-                      <div className="h-2 bg-gray-200 rounded-full">
+                      <div className="progress-bar">
                         <div 
-                          className={`h-2 rounded-full ${
-                            student.testReadiness.roadPositioning < 50 ? 'bg-red-500' : 
-                            student.testReadiness.roadPositioning < 75 ? 'bg-yellow-500' : 'bg-green-500'
-                          }`} 
+                          className={`progress-bar-fill w-progress ${
+                            student.testReadiness.roadPositioning < 50 ? 'progress-bar-fill-red' : 
+                            student.testReadiness.roadPositioning < 75 ? 'progress-bar-fill-yellow' : 'progress-bar-fill-green'
+                          }`}
                           style={{ width: `${student.testReadiness.roadPositioning}%` }}
-                        ></div>
+                        />
                       </div>
                     </div>
                     
@@ -705,4 +705,4 @@ const StudentDetail: React.FC = () => {
   );
 };
 
-export default StudentDetail; 
+export default StudentDetail;
