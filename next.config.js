@@ -1,23 +1,42 @@
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async headers() {
+  poweredByHeader: false,
+  images: {
+    domains: ['localhost'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
+  experimental: {
+    optimizeCss: true,
+  },
+  webpack: (config, { dev, isServer }) => {
+    // Only run in production client-side builds
+    if (!dev && !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          minSize: 20000,
+          maxSize: 244000,
+        }
+      }
+    }
+    return config
+  },
+  async redirects() {
     return [
       {
-        // matching all API routes
-        source: "/api/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          { key: "Access-Control-Allow-Methods", value: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS" },
-          { key: "Access-Control-Allow-Headers", value: "X-Request-With, X-Requested-With, Origin, Cache-Control, Content-Type, Accept" },
-        ]
-      }
+        source: '/',
+        destination: 'https://drivedify-git-master-olajamezes-projects.vercel.app',
+        permanent: false,
+      },
     ]
   }
 }
-
-module.exports = nextConfig
 
 module.exports = nextConfig

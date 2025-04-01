@@ -46,44 +46,53 @@ const initialContext: LessonsContextType = {
 
 export const LessonsContext = createContext<LessonsContextType>(initialContext);
 
-export const LessonsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const LessonsProvider = ({ children }: { children: ReactNode }) => {
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const methods = useMemo(() => ({
-    fetchLessons: async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/lessons`);
-        if (!response.ok) throw new Error('Failed to fetch lessons');
-        const data = await response.json();
-        setLessons(data.map((lesson: any) => ({
-          ...lesson,
-          date: new Date(lesson.date)
-        })));
-        setError(null);
-      } catch (err) {
-        setError(err instanceof Error ? err : new Error('Failed to fetch lessons'));
-        throw err;
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    addLesson: async (lesson: Omit<Lesson, 'id'>) => {
-      const newLesson: Lesson = {
+  const fetchLessons = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/lessons`);
+      if (!response.ok) throw new Error('Failed to fetch lessons');
+      const data = await response.json();
+      setLessons(data.map((lesson: any) => ({
         ...lesson,
-        id: Math.random().toString(36).substring(2, 9)
-      };
-      setLessons(prev => [...prev, newLesson]);
-    },
-    updateLesson: async (id: string, lessonData: Partial<Lesson>) => {
-      setLessons(prev => prev.map(lesson => lesson.id === id ? { ...lesson, ...lessonData } : lesson));
-    },
-    deleteLesson: async (id: string) => {
-      setLessons(prev => prev.filter(lesson => lesson.id !== id));
-    },
-    getStudentLessons: (studentId: string) => lessons.filter(lesson => lesson.studentId === studentId)
+        date: new Date(lesson.date)
+      })));
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to fetch lessons'));
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const addLesson = async (lesson: Omit<Lesson, 'id'>) => {
+    const newLesson: Lesson = {
+      ...lesson,
+      id: Math.random().toString(36).substring(2, 9)
+    };
+    setLessons(prev => [...prev, newLesson]);
+  };
+
+  const updateLesson = async (id: string, lessonData: Partial<Lesson>) => {
+    setLessons(prev => prev.map(lesson => lesson.id === id ? { ...lesson, ...lessonData } : lesson));
+  };
+
+  const deleteLesson = async (id: string) => {
+    setLessons(prev => prev.filter(lesson => lesson.id !== id));
+  };
+
+  const methods = useMemo(() => ({
+    fetchLessons,
+    addLesson,
+    updateLesson,
+    deleteLesson,
+    getStudentLessons: (studentId: string) => 
+      lessons.filter(lesson => lesson.studentName === studentId)
   }), [lessons]);
 
   const contextValue = useMemo(() => ({
@@ -95,9 +104,13 @@ export const LessonsProvider: React.FC<{ children: ReactNode }> = ({ children })
   }), [lessons, isLoading, error, methods]);
 
   return (
-    <LessonsContext.Provider value={contextValue}>
-      {children}
-    </LessonsContext.Provider>
+    <div className="lessons-provider-wrapper">
+      <LessonsContext.Provider value={contextValue}>
+        <div className="lessons-provider-content">
+          {children}
+        </div>
+      </LessonsContext.Provider>
+    </div>
   );
 };
 
